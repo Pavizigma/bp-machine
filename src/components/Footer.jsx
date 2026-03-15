@@ -67,7 +67,7 @@ export default function Footer({ onEnquiry }) {
                     }}>{link.name}</a>
                   </li>
                 ))}
-                <li><a href="#about">About Zigma Environ</a></li>
+            
               </ul>
             </div>
 
@@ -78,7 +78,7 @@ export default function Footer({ onEnquiry }) {
                 <li>
                   <MapPin size={18} className="contact-icon" />
                   <span>
-                    Zigma Global Environ Solutions,<br />
+                    Zigma Global Environ Solutions Pvt Ltd,<br />
                     Tamil Nadu, India.
                   </span>
                 </li>
@@ -88,7 +88,7 @@ export default function Footer({ onEnquiry }) {
                 </li>
                 <li>
                   <Mail size={18} className="contact-icon" />
-                  <a href="mailto:info@zigma.global">info@zigma.global</a>
+                  <a href="mailto:info@zigma.in">info@zigma.in</a>
                 </li>
               </ul>
               <button className="footer-enquiry-btn" onClick={() => onEnquiry()}>
