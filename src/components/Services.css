@@ -1,0 +1,136 @@
+.services-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  padding: 36px 28px;
+  border: 1px solid var(--mid-gray);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--svc-color, var(--primary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+  transform: translateY(-6px);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.svc-icon-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 22px;
+}
+
+.svc-icon {
+  width: 60px;
+  height: 60px;
+  background: color-mix(in srgb, var(--svc-color, #1a6b3a) 12%, white);
+  color: var(--svc-color, #1a6b3a);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition);
+}
+
+.service-card:hover .svc-icon {
+  background: var(--svc-color, #1a6b3a);
+  color: white;
+}
+
+.svc-icon-glow {
+  position: absolute;
+  inset: -4px;
+  background: var(--svc-color, #1a6b3a);
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transition: var(--transition);
+  filter: blur(12px);
+  z-index: 0;
+}
+
+.service-card:hover .svc-icon-glow {
+  opacity: 0.25;
+}
+
+.svc-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.svc-desc {
+  font-size: 13.5px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.svc-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--svc-color, #1a6b3a);
+  background: color-mix(in srgb, var(--svc-color, #1a6b3a) 10%, white);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.svc-enquire-btn {
+  background: none;
+  border: none;
+  color: var(--svc-color, #1a6b3a);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.svc-enquire-btn:hover {
+  gap: 8px;
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════
+   About Section – Merged & Redesigned
+   ═══════════════════════════════════════════════ */
+
+.about-section {
+  padding: 100px 0 100px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* ── Stats Banner ── */
+.about-stats-banner {
+  background: linear-gradient(135deg, #0d3320 0%, #1a6b3a 60%, #28a55a 100%);
+  padding: 48px 0;
+  margin-bottom: 80px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 140px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -1px;
+}
+
+.stat-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ── Merged Layout ── */
+.about-merged-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.about-content-left {
+  position: sticky;
+  top: 100px;
+}
+
+.about-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.highlight-text {
+  color: var(--primary);
+  display: block;
+}
+
+.about-lead {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.about-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--primary);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(26, 107, 58, 0.15);
+}
+
+.about-cta:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px) translateX(4px);
+  box-shadow: 0 15px 30px rgba(26, 107, 58, 0.25);
+}
+
+/* ── Advantage Grid ── */
+.about-advantage-right {
+  position: relative;
+}
+
+.advantage-inner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.advantage-card {
+  background: var(--off-white);
+  padding: 30px 24px;
+  border-radius: 20px;
+  border: 1px solid var(--mid-gray);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.advantage-card:hover {
+  background: white;
+  border-color: var(--primary-light);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(26, 107, 58, 0.08);
+}
+
+.adv-icon-box {
+  width: 48px;
+  height: 48px;
+  background: rgba(26, 107, 58, 0.08);
+  color: var(--primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.advantage-card:hover .adv-icon-box {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.adv-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.adv-desc {
+  font-size: 13.5px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .about-merged-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-content-left {
+    position: static;
+    text-align: center;
+  }
+
+  .about-lead {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .advantage-inner-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-heading {
+    font-size: 32px;
+  }
+
+  .about-stats-banner {
+    padding: 32px 0;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .stat-item {
+    min-width: 120px;
+  }
+}

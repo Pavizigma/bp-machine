@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #1a6b3a;
+  --primary-dark: #0f4525;
+  --primary-light: #2d9558;
+  --accent: #f5a623;
+  --accent-dark: #e09010;
+  --white: #ffffff;
+  --off-white: #f8f9fa;
+  --light-gray: #f0f2f5;
+  --mid-gray: #d1d5db;
+  --dark-gray: #6b7280;
+  --charcoal: #2d3748;
+  --text-dark: #1a202c;
+  --text-mid: #4a5568;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.13);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5,h6 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+img { max-width: 100%; display: block; }
+button { font-family: 'Montserrat', sans-serif; cursor: pointer; }
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-tag {
+  display: inline-block;
+  background: rgba(26,107,58,0.10);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.section-title { font-size: clamp(26px,4vw,40px); font-weight: 800; color: var(--text-dark); margin-bottom: 14px; }
+.section-subtitle { font-size: 15px; color: var(--text-mid); max-width: 560px; margin: 0 auto; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--primary); color: var(--white);
+  border: none; padding: 14px 30px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  transition: var(--transition); cursor: pointer;
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,58,0.3); }
+
+.btn-accent {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: var(--white);
+  border: none; padding: 14px 30px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  transition: var(--transition); cursor: pointer;
+}
+.btn-accent:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.35); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--white);
+  border: 2px solid rgba(255,255,255,0.8); padding: 12px 28px; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+  transition: var(--transition); cursor: pointer;
+}
+.btn-outline:hover { background: var(--white); color: var(--primary); border-color: var(--white); }
+
+@keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes slideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
