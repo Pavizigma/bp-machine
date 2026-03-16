@@ -9,7 +9,7 @@ export default function Home({ onEnquiry }) {
     <>
       <HeroCarousel onEnquiry={onEnquiry} />
       <About />
-      <Products onEnquiry={onEnquiry} isPreview={false} hideEnquiry={true} />
+      <Products onEnquiry={onEnquiry} isPreview={false} hideEnquiry={false} />
       <Services onEnquiry={onEnquiry} />
       <SupportBanner />
     </>

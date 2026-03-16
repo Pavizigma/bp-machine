@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, CheckCircle, ExternalLink } from 'lucide-react';
+import { ArrowRight, CheckCircle, ExternalLink, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Products.css';
 
@@ -81,7 +81,7 @@ export default function Products({ onEnquiry, isPreview = false, hideEnquiry = f
         <div className="products-grid">
           {displayedProducts.map((product) => (
             <div
-              className={`product-card ${activeProduct === product.id ? 'expanded' : ''}`}
+              className={`product-card ${activeProduct?.id === product.id ? 'expanded' : ''}`}
               key={product.id}
               style={{ '--card-color': product.color }}
             >
@@ -108,6 +108,12 @@ export default function Products({ onEnquiry, isPreview = false, hideEnquiry = f
                 {!hideEnquiry && (
                   <div className="product-actions">
                     <button
+                      className="btn-details-product"
+                      onClick={() => setActiveProduct(product)}
+                    >
+                      View Details
+                    </button>
+                    <button
                       className="btn-enquire-product"
                       onClick={() => onEnquiry(product.name)}
                     >
@@ -119,6 +125,54 @@ export default function Products({ onEnquiry, isPreview = false, hideEnquiry = f
             </div>
           ))}
         </div>
+
+        {/* Product Details Modal */}
+        {activeProduct && (
+          <div className="product-modal-overlay" onClick={() => setActiveProduct(null)}>
+            <div className="product-modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close-btn" onClick={() => setActiveProduct(null)}>
+                <X size={24} />
+              </button>
+              
+              <div className="modal-grid">
+                <div className="modal-image-side">
+                  <img src={activeProduct.image} alt={activeProduct.name} />
+                  <div className="modal-image-overlay" />
+                </div>
+                
+                <div className="modal-info-side">
+                  <span className="modal-tag" style={{ color: activeProduct.color }}>{activeProduct.tag}</span>
+                  <h2 className="modal-title">{activeProduct.name}</h2>
+                  <p className="modal-description">{activeProduct.description}</p>
+                  
+                  <div className="specs-section">
+                    <h4 className="specs-title">Key Specifications</h4>
+                    <ul className="modal-features">
+                      {activeProduct.features.map((f) => (
+                        <li key={f}>
+                          <CheckCircle size={18} style={{ color: activeProduct.color }} />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="modal-actions-footer">
+                    <button 
+                      className="btn-primary" 
+                      onClick={() => {
+                        onEnquiry(activeProduct.name);
+                        setActiveProduct(null);
+                      }}
+                    >
+                      Get Quote for {activeProduct.name} <ArrowRight size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {isPreview && (
           <div className="view-more-container" style={{ textAlign: 'center', marginTop: '50px' }}>

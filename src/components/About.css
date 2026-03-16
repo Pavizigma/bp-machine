@@ -78,6 +78,7 @@
   color: var(--text-mid);
   line-height: 1.8;
   margin-bottom: 32px;
+  text-align: justify;
 }
 
 .about-cta {

@@ -102,25 +102,12 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
             <div className="modal-header">
               <div className="modal-header-icon"><Send size={24} /></div>
               <div className="modal-header-text">
-                <h2 className="modal-title">Get a Custom Quote</h2>
+                <h4 className="modal-title">Get a Custom Quote</h4>
                 <p className="modal-sub">We'll help you find the right solution for your waste processing needs.</p>
               </div>
             </div>
 
-            <div className="type-toggle">
-              <button
-                className={`toggle-btn ${form.type === 'buy' ? 'active' : ''}`}
-                onClick={() => setForm((f) => ({ ...f, type: 'buy' }))}
-              >
-                <span>🛒</span> Buy Machine
-              </button>
-              <button
-                className={`toggle-btn ${form.type === 'rent' ? 'active' : ''}`}
-                onClick={() => setForm((f) => ({ ...f, type: 'rent' }))}
-              >
-                <span>📦</span> Rent Machine
-              </button>
-            </div>
+
 
             <form className="modal-form" onSubmit={handleSubmit} noValidate>
               <div className="form-grid">
@@ -128,7 +115,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
                   <label>Full Name *</label>
                   <div className={`input-wrapper ${errors.name ? 'error' : ''}`}>
                     <User size={18} className="input-icon" />
-                    <input name="name" value={form.name} onChange={handleChange} placeholder="John Smith" />
+                    <input name="name" value={form.name} onChange={handleChange} placeholder="" />
                   </div>
                   {errors.name && <span className="err-msg">{errors.name}</span>}
                 </div>
@@ -137,7 +124,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
                   <label>Email Address *</label>
                   <div className={`input-wrapper ${errors.email ? 'error' : ''}`}>
                     <Mail size={18} className="input-icon" />
-                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="john@company.com" />
+                    <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="" />
                   </div>
                   {errors.email && <span className="err-msg">{errors.email}</span>}
                 </div>
@@ -146,7 +133,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
                   <label>Company Name</label>
                   <div className="input-wrapper">
                     <Building size={18} className="input-icon" />
-                    <input name="company" value={form.company} onChange={handleChange} placeholder="ABC Corp Pvt. Ltd." />
+                    <input name="company" value={form.company} onChange={handleChange} placeholder="" />
                   </div>
                 </div>
 
@@ -154,7 +141,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
                   <label>Phone Number *</label>
                   <div className={`input-wrapper ${errors.phone ? 'error' : ''}`}>
                     <Phone size={18} className="input-icon" />
-                    <input name="phone" value={form.phone} onChange={handleChange} placeholder="+91 98765 43210" />
+                    <input name="phone" value={form.phone} onChange={handleChange} placeholder="" />
                   </div>
                   {errors.phone && <span className="err-msg">{errors.phone}</span>}
                 </div>
@@ -208,8 +195,8 @@ export default function EnquiryModal({ isOpen, onClose, defaultProduct }) {
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your project requirements..."
-                    rows={3}
+                    placeholder=""
+                    rows={2}
                   />
                 </div>
               </div>

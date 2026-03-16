@@ -72,9 +72,9 @@ export default function Services({ onEnquiry }) {
                   <span className="svc-tag" key={t}>{t}</span>
                 ))}
               </div>
-              <button className="svc-enquire-btn" onClick={() => onEnquiry(svc.title)}>
+              {/* <button className="svc-enquire-btn" onClick={() => onEnquiry(svc.title)}>
                 Get Quote →
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
