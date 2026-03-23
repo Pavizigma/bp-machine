@@ -28,9 +28,10 @@ export default function Navbar({ onEnquiry }) {
           />
 
           {/* Brand Name */}
-          <span className="brand-text font-semibold text-lg text-success tracking-wide">
-            <b>Machineries</b>
-          </span>
+          <div className="brand-text-group">
+            <span className="brand-slogan">WasteTech</span>
+            <span className="brand-subtitle">Equipment Sales</span>
+          </div>
         </Link>
 
         <ul className={`nav-links ${mobileOpen ? 'open' : ''}`}>

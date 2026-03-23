@@ -152,6 +152,31 @@
   transition: var(--transition);
 }
 
+/* Brand Slogan */
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.brand-slogan {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: 1px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--light-grey);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
 /* Right Branding */
 .nav-brand-right {
   display: flex;
