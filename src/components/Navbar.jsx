@@ -30,7 +30,7 @@ export default function Navbar({ onEnquiry }) {
           {/* Brand Name */}
           <div className="brand-text-group">
             <span className="brand-slogan">WasteTech</span>
-            <span className="brand-subtitle">Equipment Sales</span>
+            <span className="brand-subtitle">equipment sales</span>
           </div>
         </Link>
 
