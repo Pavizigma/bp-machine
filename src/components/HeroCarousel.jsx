@@ -6,6 +6,7 @@ import hero1 from '../assets/images/MSW-equipment.png';
 import hero2 from '../assets/images/hero22.jpg';
 import hero3 from '../assets/images/hero23.jpg';
 
+
 const slides = [
   {
     id: 1,
