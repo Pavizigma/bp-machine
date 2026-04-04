@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './HeroCarousel.css';
 import hero1 from '../assets/images/MSW-equipment.png';
-import hero2 from '../assets/images/hero22.jpg';
+import hero2 from '../assets/images/hero22.JPG';
 import hero3 from '../assets/images/hero23.jpg';
 
 
