@@ -67,7 +67,7 @@ export default function Footer({ onEnquiry }) {
                     }}>{link.name}</a>
                   </li>
                 ))}
-            
+
               </ul>
             </div>
 
@@ -84,11 +84,11 @@ export default function Footer({ onEnquiry }) {
                 </li>
                 <li>
                   <Phone size={18} className="contact-icon" />
-                  <a href="tel:+919876543210">+91 98765 43210</a>
+                  <a href="tel:+918220255980">+91 82202 55980</a>
                 </li>
                 <li>
                   <Mail size={18} className="contact-icon" />
-                  <a href="mailto:info@zigma.in">info@zigma.in</a>
+                  <a href="mailto:connect@zigma.in">connect@zigma.in</a>
                 </li>
               </ul>
               <button className="footer-enquiry-btn" onClick={() => onEnquiry()}>

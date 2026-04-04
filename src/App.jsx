@@ -6,6 +6,7 @@ import EnquiryModal from './components/EnquiryModal';
 import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import ProductsPage from './pages/ProductsPage';
+import ProductDetail from './pages/ProductDetail';
 import './App.css';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home onEnquiry={openEnquiry} />} />
           <Route path="/products" element={<ProductsPage onEnquiry={openEnquiry} />} />
+          <Route path="/product/:id" element={<ProductDetail onEnquiry={openEnquiry} />} />
         </Routes>
       </main>
       <Footer onEnquiry={openEnquiry} />

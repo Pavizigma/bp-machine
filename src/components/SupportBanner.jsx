@@ -20,7 +20,7 @@ export default function SupportBanner() {
             <h2 className="support-title">Need help finding the right equipment?</h2>
             <p className="support-text">
               <Phone size={18} className="phone-inline-icon" />
-              Call us at <a href="tel:+919876543210" className="phone-link">+91 98765 43210</a>
+              Call us at <a href="tel:+919876543210" className="phone-link">+91 82202 55980</a>
             </p>
           </div>
         </div>

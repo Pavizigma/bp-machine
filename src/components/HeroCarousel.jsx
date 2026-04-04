@@ -1,54 +1,73 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './HeroCarousel.css';
+import hero1 from '../assets/images/MSW-equipment.png';
+import hero2 from '../assets/images/hero22.jpg';
+import hero3 from '../assets/images/hero23.jpg';
 
 const slides = [
   {
     id: 1,
-    image: '/images/hero-1.jpg',
-    // tag: 'Innovation',
+    image: hero1,
+    eyebrow: 'Waste Management Innovation',
     title: 'Engineering the Future of Waste Management',
-    subtitle: 'Optimizing waste management for a greener tomorrow.',
-    // badge: 'Zigma Global',
+    subtitle: 'Optimizing municipal solid waste operations for a cleaner, greener tomorrow.',
+    cta: { label: 'Explore Products', href: '#products' },
   },
   {
     id: 2,
-    image: '/images/hero-2.jpg',
-    // tag: 'Excellence',
-    title: 'Industrial Solutions',
-    subtitle: 'High-efficiency machinery for every scale.',
-    // badge: 'Reliability',
+    image: hero2,
+    eyebrow: 'Industrial Machinery',
+    title: 'High-Performance Industrial Solutions',
+    subtitle: 'Heavy-duty machinery engineered for maximum efficiency at every scale.',
+    cta: { label: 'View Solutions', href: '#products' },
   },
   {
     id: 3,
-    image: '/images/hero-3.jpg',
-    // tag: 'Sustainability',
-    title: 'Circular Economy',
-    subtitle: 'Driving technology towards zero waste.',
-    // badge: 'Blue Planet',
+    image: hero3,
+    eyebrow: 'Circular Economy',
+    title: 'Driving the Circular Economy Forward',
+    subtitle: 'Advanced technology and expert engineering towards zero-waste operations.',
+    cta: { label: 'Our Story', href: '#about' },
   },
 ];
 
 export default function HeroCarousel({ onEnquiry }) {
   const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState(null);
   const [animating, setAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [textKey, setTextKey] = useState(0);
 
-  const goTo = useCallback((index) => {
-    if (animating) return;
-    setAnimating(true);
-    setCurrent(index);
-    setTimeout(() => setAnimating(false), 700);
-  }, [animating]);
+  const goTo = useCallback(
+    (index) => {
+      if (animating || index === current) return;
+      setAnimating(true);
+      setPrev(current);
+      setCurrent(index);
+      setTextKey((k) => k + 1);
+      setTimeout(() => {
+        setPrev(null);
+        setAnimating(false);
+      }, 900);
+    },
+    [animating, current]
+  );
 
-  const next = () => goTo((current + 1) % slides.length);
-  const prev = () => goTo((current - 1 + slides.length) % slides.length);
+  const next = useCallback(() => goTo((current + 1) % slides.length), [current, goTo]);
+  const goToPrev = useCallback(
+    () => goTo((current - 1 + slides.length) % slides.length),
+    [current, goTo]
+  );
 
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [current, isPaused]);
+  }, [next, isPaused]);
+
+  const pad = (n) => String(n + 1).padStart(2, '0');
 
   return (
     <section
@@ -57,59 +76,75 @@ export default function HeroCarousel({ onEnquiry }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* Slide layers */}
       <div className="carousel-track">
         {slides.map((slide, i) => (
           <div
             key={slide.id}
-            className={`carousel-slide ${i === current ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
+            className={`carousel-slide ${i === current ? 'slide-active' : ''} ${i === prev ? 'slide-exit' : ''
+              }`}
           >
-            <div className="slide-overlay" />
-            <div className="slide-content container">
-              <div className={`slide-inner ${i === current ? 'slide-visible' : ''}`}>
-                {/* <span className="slide-badge">{slide.badge}</span> */}
-                <p className="slide-tag">{slide.tag}</p>
-                <h1 className="slide-title">{slide.title}</h1>
-                <p className="slide-subtitle">{slide.subtitle}</p>
-                {/* <div className="slide-actions">
-                  <button className="btn-accent" onClick={onEnquiry}>
-                    Enquire Now
-                  </button>
-                  <a href="#products" className="btn-outline">
-                    View Products
-                  </a>
-                </div> */}
-              </div>
-            </div>
+            <img src={slide.image} alt={slide.title} className="carousel-img" />
+            {/* <div className="slide-overlay" /> */}
           </div>
         ))}
       </div>
 
-      {/* Controls */}
-      <button className="carousel-btn carousel-btn-prev" onClick={prev}>
-        <ChevronLeft size={22} />
-      </button>
-      <button className="carousel-btn carousel-btn-next" onClick={next}>
-        <ChevronRight size={22} />
-      </button>
-
-      {/* Dots */}
-      <div className="carousel-dots">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            className={`dot ${i === current ? 'active' : ''}`}
-            onClick={() => goTo(i)}
-          />
-        ))}
+      {/* Text content */}
+      <div className="slide-content container" key={textKey}>
+        {/* <div className="slide-inner">
+          <span className="slide-eyebrow">{slides[current].eyebrow}</span>
+          <h1 className="slide-title">{slides[current].title}</h1>
+          <p className="slide-subtitle">{slides[current].subtitle}</p>
+          <div className="slide-actions">
+            <a href={slides[current].cta.href} className="hero-btn-primary">
+              {slides[current].cta.label}
+              <ArrowRight size={16} />
+            </a>
+            <button className="hero-btn-ghost" onClick={onEnquiry}>
+              Enquire Now
+            </button>
+          </div>
+        </div> */}
       </div>
 
-      {/* Progress bar */}
-      <div className="carousel-progress">
-        <div
-          key={current}
-          className="carousel-progress-bar"
-        />
+      {/* Bottom control bar — Hitachi-style */}
+      <div className="hero-control-bar">
+        <div className="container hero-control-inner">
+          {/* Slide counter */}
+          <div className="slide-counter">
+            <span className="counter-current">{pad(current)}</span>
+            <span className="counter-sep">
+              <span
+                className="counter-line-fill"
+                key={`progress-${current}`}
+              />
+            </span>
+            <span className="counter-total">{pad(slides.length - 1)}</span>
+          </div>
+
+          {/* Dot nav */}
+          <div className="carousel-dots">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                className={`dot ${i === current ? 'active' : ''}`}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Arrow controls */}
+          <div className="carousel-arrows">
+            <button className="carousel-btn" onClick={goToPrev} aria-label="Previous slide">
+              <ChevronLeft size={20} />
+            </button>
+            <button className="carousel-btn" onClick={next} aria-label="Next slide">
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

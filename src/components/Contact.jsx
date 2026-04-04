@@ -3,8 +3,8 @@ import './Contact.css';
 
 const info = [
   { icon: <MapPin size={20} />, label: 'Address', value: 'Blue Planet Group, Industrial Area, Mumbai, Maharashtra, India' },
-  { icon: <Phone size={20} />, label: 'Phone', value: '+91 98765 43210' },
-  { icon: <Mail size={20} />, label: 'Email', value: 'info@zigmaglobal.com' },
+  { icon: <Phone size={20} />, label: 'Phone', value: '+91 82202 55980' },
+  { icon: <Mail size={20} />, label: 'Email', value: 'connect@zigma.in' },
   { icon: <Clock size={20} />, label: 'Working Hours', value: 'Mon – Sat: 9:00 AM – 6:00 PM IST' },
 ];
 

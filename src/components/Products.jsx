@@ -1,69 +1,12 @@
-import { useState } from 'react';
-import { ArrowRight, CheckCircle, ExternalLink, X } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { products } from '../data/productData';
 import './Products.css';
 
-const products = [
-  {
-    id: 1,
-    name: 'MSW Plant Equipment',
-    tag: 'Complete Solutions',
-    image: '/images/product-plant-2.jpg',
-    description: 'Designed for heavy-duty, high-efficiency operations. Ideal for handling a wide range of waste types and volumes with durable construction.',
-    features: ['Heavy-duty high-efficiency operations', 'Wide range of waste types & volumes', 'Advanced seamless processing features', 'Durable, long-lasting construction'],
-    color: '#1a6b3a',
-  },
-  {
-    id: 2,
-    name: 'Trommels',
-    tag: 'Waste Separation',
-    image: '/images/product-trommel.png',
-    description: 'Available in various sizes and volumes to suit different processing needs. Long product life with reduced maintenance requirements.',
-    features: ['Various sizes & volumes', 'Long product life', 'Reduced maintenance requirements', 'Customizable for different waste types'],
-    color: '#2563eb',
-  },
-  {
-    id: 3,
-    name: 'Conveyors',
-    tag: 'Material Handling',
-    image: '/images/product-plant-1.jpg',
-    description: 'Ranges from 500mm to 2400mm wide for maximum material throughput. Customizable idlers and frames for versatile material handling.',
-    features: ['500mm to 2400mm width range', 'Customizable idlers & frames', 'Energy-efficient systems', 'Reduces operational costs'],
-    color: '#7c3aed',
-  },
-  {
-    id: 4,
-    name: 'Disc Screen Separator',
-    tag: 'High-Volume Screening',
-    image: '/images/product-machinery.jpg',
-    description: 'Ideal for high-volume screening of all material types including Inserts and RDF. Simple arrangement with minimal maintenance.',
-    features: ['High-volume screening capacity', 'All material types (Inserts, RDF)', 'Minimal maintenance requirements', 'Energy-efficient, low operational costs'],
-    color: '#dc2626',
-  },
-  {
-    id: 5,
-    name: 'Air Density Separator',
-    tag: 'Safety-First Design',
-    image: '/images/product-ads.jpg',
-    description: 'Explosion-proof and shock-resistant design for enhanced safety. High wear protection with excellent separation and contaminant removal.',
-    features: ['Explosion-proof & shock-resistant', 'High wear protection', 'Excellent separation performance', 'Superior contaminant removal'],
-    color: '#ea580c',
-  },
-  {
-    id: 6,
-    name: 'Over Band Magnetic Separator',
-    tag: 'Metal Recovery',
-    image: '/images/product-magnetic.jpg',
-    description: 'Self-cleaning and energy-efficient magnetic separators. No electrical power required for operation, with customizable belt configurations.',
-    features: ['Self-cleaning design', 'No electrical power for operation', 'Customizable belt widths', 'Continuous metal recovery'],
-    color: '#0891b2',
-  },
-];
-
-export default function Products({ onEnquiry, isPreview = false, hideEnquiry = false }) {
-  const [activeProduct, setActiveProduct] = useState(null);
-
-  const displayedProducts = isPreview ? products.slice(0, 3) : products;
+export default function Products({ isPreview = false }) {
+  // Only display non-hidden products. If it's a preview on the homepage, show only the first 3.
+  const visibleProducts = products.filter(p => !p.hidden);
+  const displayedProducts = isPreview ? visibleProducts.slice(0, 3) : visibleProducts;
 
   return (
     <section className="products-section" id="products">
@@ -81,7 +24,7 @@ export default function Products({ onEnquiry, isPreview = false, hideEnquiry = f
         <div className="products-grid">
           {displayedProducts.map((product) => (
             <div
-              className={`product-card ${activeProduct?.id === product.id ? 'expanded' : ''}`}
+              className={`product-card object-fit-cover`}
               key={product.id}
               style={{ '--card-color': product.color }}
             >
@@ -97,82 +40,20 @@ export default function Products({ onEnquiry, isPreview = false, hideEnquiry = f
               <div className="product-body">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-desc">{product.description}</p>
-                <ul className="product-features">
-                  {product.features.map((f) => (
-                    <li key={f}>
-                      <CheckCircle size={14} />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                {!hideEnquiry && (
-                  <div className="product-actions">
-                    <button
-                      className="btn-details-product"
-                      onClick={() => setActiveProduct(product)}
-                    >
-                      View Details
-                    </button>
-                    <button
-                      className="btn-enquire-product"
-                      onClick={() => onEnquiry(product.name)}
-                    >
-                      Enquire <ArrowRight size={14} />
-                    </button>
-                  </div>
-                )}
+                
+                <div className="product-actions" style={{ marginTop: 'auto', paddingTop: '15px' }}>
+                  <Link
+                    to={`/product/${product.id}`}
+                    className="btn-details-product"
+                    style={{ width: '100%', textAlign: 'center', display: 'inline-block', boxSizing: 'border-box' }}
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Product Details Modal */}
-        {activeProduct && (
-          <div className="product-modal-overlay" onClick={() => setActiveProduct(null)}>
-            <div className="product-modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close-btn" onClick={() => setActiveProduct(null)}>
-                <X size={24} />
-              </button>
-              
-              <div className="modal-grid">
-                <div className="modal-image-side">
-                  <img src={activeProduct.image} alt={activeProduct.name} />
-                  <div className="modal-image-overlay" />
-                </div>
-                
-                <div className="modal-info-side">
-                  <span className="modal-tag" style={{ color: activeProduct.color }}>{activeProduct.tag}</span>
-                  <h2 className="modal-title">{activeProduct.name}</h2>
-                  <p className="modal-description">{activeProduct.description}</p>
-                  
-                  <div className="specs-section">
-                    <h4 className="specs-title">Key Specifications</h4>
-                    <ul className="modal-features">
-                      {activeProduct.features.map((f) => (
-                        <li key={f}>
-                          <CheckCircle size={18} style={{ color: activeProduct.color }} />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="modal-actions-footer">
-                    <button 
-                      className="btn-primary" 
-                      onClick={() => {
-                        onEnquiry(activeProduct.name);
-                        setActiveProduct(null);
-                      }}
-                    >
-                      Get Quote for {activeProduct.name} <ArrowRight size={18} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {isPreview && (
           <div className="view-more-container" style={{ textAlign: 'center', marginTop: '50px' }}>
